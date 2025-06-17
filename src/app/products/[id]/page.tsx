@@ -1,6 +1,12 @@
 import Image from "next/image";
 
-export default async function ProductPage({ params }) {
+export interface ProductPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
   const _p = await params;
   const res = await fetch(`https://dummyjson.com/products/${_p.id}`, {
     next: {

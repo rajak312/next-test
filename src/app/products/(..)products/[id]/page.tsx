@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Product } from "@/app/@types/products";
 
 export default async function ProductModal({
   params,
@@ -8,7 +9,7 @@ export default async function ProductModal({
 }) {
   const { id } = await params;
   const res = await fetch(`https://dummyjson.com/products/${id}`);
-  const product = await res.json();
+  const product: Product = await res.json();
 
   return (
     <div
@@ -79,12 +80,6 @@ export default async function ProductModal({
               cursor: "pointer",
               transition: "background-color 0.2s ease",
             }}
-            // onMouseOver={(e) =>
-            //   (e.currentTarget.style.backgroundColor = "#2563eb")
-            // }
-            // onMouseOut={(e) =>
-            //   (e.currentTarget.style.backgroundColor = "#3b82f6")
-            // }
           >
             Close
           </button>

@@ -1,13 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
+import { Product } from "../@types/products";
+
+export const metadata: Metadata = {
+  title: "products",
+  description: "products list",
+};
 
 export default async function ProductsPage() {
   const res = await fetch("https://dummyjson.com/products");
-  const data = await res.json();
+  const products: Product[] = (await res.json()).products;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
-      {data.products?.map((product) => (
+      {products?.map((product) => (
         <Link
           key={product.id}
           href={`/products/${product.id}`}
