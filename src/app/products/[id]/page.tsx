@@ -1,8 +1,22 @@
+import { Product } from "@/app/@types/products";
+import { Metadata } from "next";
 import Image from "next/image";
 
 export interface ProductPageProps {
   params: {
     id: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const res = await fetch(`https://dummyjson.com/products/${id}`);
+  const product: Product = await res.json();
+  return {
+    title: product.title,
+    description: product.description,
   };
 }
 
