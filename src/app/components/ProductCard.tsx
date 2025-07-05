@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Product } from "../@types/products";
 
-export default function ProductCard({ product }: { product: any }) {
+export default function ProductCard({ product }: { product: Product }) {
   const navigation = useRouter();
 
-  const handleCardClick = (id: string) => navigation.push(`/products/${id}`);
+  const handleCardClick = (id: number) => navigation.push(`/products/${id}`);
 
   return (
     <div
