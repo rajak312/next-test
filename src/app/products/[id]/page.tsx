@@ -40,7 +40,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: product.title,
+    title: product.title,
     description: product.description,
     image: product.images[0],
   };
@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd),
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
       <h1 className="text-2xl font-bold mb-4 text-center">{product.title}</h1>
